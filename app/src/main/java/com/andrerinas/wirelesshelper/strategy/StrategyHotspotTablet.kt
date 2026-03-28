@@ -39,8 +39,13 @@ class StrategyHotspotTablet(context: Context, private val scope: CoroutineScope)
         }
     }
 
-    override fun stop() {
+    override fun pauseDiscoveryForProxyLaunch() {
+        super.pauseDiscoveryForProxyLaunch()
         try { serverSocket?.close() } catch (e: Exception) {}
         serverSocket = null
+    }
+
+    override fun stop() {
+        pauseDiscoveryForProxyLaunch()
     }
 }

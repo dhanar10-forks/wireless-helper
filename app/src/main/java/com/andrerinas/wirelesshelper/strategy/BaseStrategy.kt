@@ -60,7 +60,7 @@ abstract class BaseStrategy(protected val context: Context, private val scope: C
         Log.i(TAG, "Strategy triggering PROXY launch for $hostIp")
         connectionEstablished.set(false)
         
-        stop()
+        pauseDiscoveryForProxyLaunch()
 
         scope.launch {
             try {
@@ -136,10 +136,14 @@ abstract class BaseStrategy(protected val context: Context, private val scope: C
         }
     }
 
-    override fun stop() {
-        Log.d(TAG, "Stopping discovery/strategy jobs")
+    protected open fun pauseDiscoveryForProxyLaunch() {
+        Log.d(TAG, "Pausing discovery for proxy launch")
         strategyJob?.cancel()
         strategyJob = null
+    }
+
+    override fun stop() {
+        pauseDiscoveryForProxyLaunch()
     }
 
     fun cleanup() {

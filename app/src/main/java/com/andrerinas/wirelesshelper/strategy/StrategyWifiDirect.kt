@@ -199,20 +199,24 @@ class StrategyWifiDirect(context: Context, scope: CoroutineScope) : BaseStrategy
         }
     }
 
-    override fun stop() {
+    override fun pauseDiscoveryForProxyLaunch() {
         val channel = p2pChannel
-        super.stop()
+        super.pauseDiscoveryForProxyLaunch()
         try { nsdManager.stopServiceDiscovery(discoveryListener) } catch (e: Exception) {}
         discoveryListener = null
-        
+
         try { context.unregisterReceiver(p2pReceiver) } catch (e: Exception) {}
         p2pReceiver = null
-        
+
         if (channel != null) {
             @SuppressLint("MissingPermission")
             p2pManager?.stopPeerDiscovery(channel, null)
         }
         p2pChannel = null
         isConnectingToPeer = false
+    }
+
+    override fun stop() {
+        pauseDiscoveryForProxyLaunch()
     }
 }

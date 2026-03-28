@@ -47,12 +47,15 @@ class StrategyHotspotPhone(context: Context, private val scope: CoroutineScope) 
         }
     }
 
-    override fun stop() {
-        Log.d(TAG, "Stopping Hotspot TCP Listener")
+    override fun pauseDiscoveryForProxyLaunch() {
+        super.pauseDiscoveryForProxyLaunch()
         try { serverSocket?.close() } catch (e: Exception) {}
         serverSocket = null
-        
-        // Disable hotspot if we enabled it
+    }
+
+    override fun stop() {
+        Log.d(TAG, "Stopping Hotspot TCP Listener")
+        pauseDiscoveryForProxyLaunch()
         if (hotspotEnabledByUs) {
             Log.i(TAG, "Disabling hotspot (was enabled by us)")
             HotspotManager.setHotspotEnabled(context, false)
