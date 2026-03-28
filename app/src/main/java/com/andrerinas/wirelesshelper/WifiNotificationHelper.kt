@@ -21,7 +21,7 @@ object WifiNotificationHelper {
      *
      * @param context The application or service context.
      * @param isFromUi Set to true if calling from an Activity to show a Popup Dialog instead of a Notification.
-     * @param connectionMode The current connection mode (0=NSD, 1=Hotspot, 2=Passive, 3=Direct).
+     * @param connectionMode The current connection mode (0=NSD, 1=Phone hotspot, 2=Tablet hotspot, 3=Wi‑Fi Direct, 4=Tablet hotspot gateway).
      * @param onConnectReady A lambda function containing the normal connection logic.
      */
     fun checkWifiAndConnect(
