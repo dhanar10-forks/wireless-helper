@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         const val MODE_HOTSPOT_PHONE = 1
         const val MODE_PASSIVE = 2
         const val MODE_WIFI_DIRECT = 3
+        const val MODE_TABLET_HOTSPOT_GATEWAY = 4
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -92,7 +93,8 @@ class MainActivity : AppCompatActivity() {
             getString(R.string.mode_nsd),
             getString(R.string.mode_hotspot_phone),
             getString(R.string.mode_passive),
-            getString(R.string.mode_wifi_direct)
+            getString(R.string.mode_wifi_direct),
+            getString(R.string.mode_tablet_hotspot_gateway)
         )
     }
 
@@ -198,7 +200,7 @@ class MainActivity : AppCompatActivity() {
                 val currentMode = prefs.getInt("connection_mode", 0)
                 
                 // Extra check for Hotspot permission
-                if ((currentMode == 1 || currentMode == 2) && !checkWriteSettingsPermission()) {
+                if ((currentMode == 1 || currentMode == 2 || currentMode == MODE_TABLET_HOTSPOT_GATEWAY) && !checkWriteSettingsPermission()) {
                     return@setOnClickListener
                 }
 
@@ -211,14 +213,15 @@ class MainActivity : AppCompatActivity() {
         layoutConnectionMode.setOnClickListener {
             val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
             val currentMode = prefs.getInt("connection_mode", 0)
+            val safeModeIndex = currentMode.coerceIn(0, connectionModes.lastIndex)
             MaterialAlertDialogBuilder(this, R.style.DarkAlertDialog)
                 .setTitle(R.string.connection_mode_label)
-                .setSingleChoiceItems(connectionModes, currentMode) { dialog, which ->
+                .setSingleChoiceItems(connectionModes, safeModeIndex) { dialog, which ->
                     prefs.edit { putInt("connection_mode", which) }
                     tvConnectionModeValue.text = connectionModes[which]
                     updateModeSpecificUI(which)
                     
-                    if (which == 1 || which == 2) { // Phone or Tablet Hotspot
+                    if (which == 1 || which == 2 || which == MODE_TABLET_HOTSPOT_GATEWAY) { // Phone, Tablet Hotspot, or Gateway
                         checkWriteSettingsPermission()
                     }
                     
@@ -733,7 +736,7 @@ class MainActivity : AppCompatActivity() {
         
         val prefs = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE)
         val currentMode = prefs.getInt("connection_mode", 0)
-        if (currentMode == 1 || currentMode == 2) { // Phone or Tablet Hotspot
+        if (currentMode == 1 || currentMode == 2 || currentMode == MODE_TABLET_HOTSPOT_GATEWAY) { // Phone, Tablet Hotspot, or Gateway
             checkWriteSettingsPermission()
         }
 
@@ -805,7 +808,14 @@ class MainActivity : AppCompatActivity() {
                 "start" -> {
                     val modeParam = data.getQueryParameter("mode")
                     if (!modeParam.isNullOrEmpty()) {
-                        val modeIdx = when (modeParam.lowercase()) { "nsd" -> 0; "phone-hotspot" -> 1; "tablet-hotspot" -> 2; "wifi-direct" -> 3; else -> -1 }
+                        val modeIdx = when (modeParam.lowercase()) {
+                            "nsd" -> 0
+                            "phone-hotspot" -> 1
+                            "tablet-hotspot" -> 2
+                            "wifi-direct" -> 3
+                            "tablet-hotspot-gateway" -> MODE_TABLET_HOTSPOT_GATEWAY
+                            else -> -1
+                        }
                         if (modeIdx != -1) {
                             getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE).edit { putInt("connection_mode", modeIdx) }
                             tvConnectionModeValue.text = connectionModes[modeIdx]

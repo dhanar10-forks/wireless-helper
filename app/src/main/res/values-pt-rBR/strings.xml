@@ -11,6 +11,8 @@
     <string name="mode_hotspot_phone">Roteador do Celular</string>
     <string name="mode_passive">Roteador do Tablet/Multimidia</string>
     <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    <string name="mode_tablet_hotspot_gateway">Gateway hotspot do tablet</string>
+
 
     <!-- Auto Start -->
     <string name="auto_start_label">Início Automático</string>

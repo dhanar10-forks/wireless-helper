@@ -18,6 +18,7 @@ import com.andrerinas.wirelesshelper.strategy.BaseStrategy
 import com.andrerinas.wirelesshelper.strategy.ConnectionStrategy
 import com.andrerinas.wirelesshelper.strategy.StrategyHotspotPhone
 import com.andrerinas.wirelesshelper.strategy.StrategyHotspotTablet
+import com.andrerinas.wirelesshelper.strategy.StrategyHotspotTabletGateway
 import com.andrerinas.wirelesshelper.strategy.StrategySharedNetwork
 import com.andrerinas.wirelesshelper.strategy.StrategyWifiDirect
 import com.andrerinas.wirelesshelper.net.WifiNetworkBinding
@@ -96,7 +97,7 @@ class WirelessHelperService : Service(), BaseStrategy.StateListener {
         acquireWakeLock()
         currentStrategy?.stop()
 
-        if (mode == 2) {
+        if (mode == 2 || mode == 4) {
             WifiNetworkBinding.start(this)
         } else {
             WifiNetworkBinding.stop(this)
@@ -107,6 +108,7 @@ class WirelessHelperService : Service(), BaseStrategy.StateListener {
             1 -> StrategyHotspotPhone(this, serviceScope)
             2 -> StrategyHotspotTablet(this, serviceScope)
             3 -> StrategyWifiDirect(this, serviceScope)
+            4 -> StrategyHotspotTabletGateway(this, serviceScope)
             else -> StrategySharedNetwork(this, serviceScope)
         }
         
