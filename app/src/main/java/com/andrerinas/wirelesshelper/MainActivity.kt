@@ -796,6 +796,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        setIntent(intent)
         handleIntent(intent)
     }
 
@@ -820,12 +821,12 @@ class MainActivity : AppCompatActivity() {
                             tvConnectionModeValue.text = connectionModes[modeIdx]
                         }
                     }
-                    if (!isServiceRunning) {
+                    if (!WirelessHelperService.isRunning) {
                         val currentMode = getSharedPreferences("WirelessHelperPrefs", Context.MODE_PRIVATE).getInt("connection_mode", 0)
                         WifiNotificationHelper.checkWifiAndConnect(this, isFromUi = false, connectionMode = currentMode) { checkPermissionsAndStart() }
                     }
                 }
-                "stop" -> if (isServiceRunning) stopLauncherService()
+                "stop" -> if (WirelessHelperService.isRunning) stopLauncherService()
             }
         }
     }
