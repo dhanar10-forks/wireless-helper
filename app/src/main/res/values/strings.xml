@@ -11,6 +11,7 @@
     <string name="mode_hotspot_phone">Phone Hotspot</string>
     <string name="mode_passive">Tablet Hotspot</string>
     <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    <string name="mode_tablet_hotspot_gateway">Tablet Hotspot Gateway</string>
 
     <!-- Auto Start -->
     <string name="auto_start_label">Auto Start Service</string>
@@ -66,22 +67,22 @@
     <string name="language_label">Language</string>
     <string name="language_system_default">System Default</string>
     <string name="language_english">English</string>
-    <string name="language_czech">Čeština (Czech)</string>
-    <string name="language_spanish_spain">Español (España)</string>
+    <string name="language_czech">ÄŒeÅ¡tina (Czech)</string>
+    <string name="language_spanish_spain">EspaÃ±ol (EspaÃ±a)</string>
     <string name="language_hungarian">Magyar (Hungarian)</string>
     <string name="language_dutch">Nederlands (Dutch)</string>
     <string name="language_polish">Polski (Polish)</string>
-    <string name="language_romanian">Română (Romanian)</string>
-    <string name="language_ukrainian">Українська (Ukrainian)</string>
-    <string name="language_chinese">繁體中文 (Taiwan)</string>
+    <string name="language_romanian">RomÃ¢nÄƒ (Romanian)</string>
+    <string name="language_ukrainian">Ð£ÐºÑ€Ð°Ñ—Ð½ÑÑŒÐºÐ° (Ukrainian)</string>
+    <string name="language_chinese">ç¹é«”ä¸­æ–‡ (Taiwan)</string>
     <string name="language_german">Deutsch</string>
-    <string name="language_russian">Русский</string>
+    <string name="language_russian">Ð ÑƒÑÑÐºÐ¸Ð¹</string>
     <string name="language_portuguese">Portuguese (Brazil)</string>
     <string name="language_arabic">Arabic</string>
     <string name="language_spanish">Spanish</string>
 
     <!-- Notifications & Service -->
-    <string name="notif_searching">Searching for Headunit…</string>
+    <string name="notif_searching">Searching for Headunitâ€¦</string>
     <string name="notif_connected">Connected to Android Auto</string>
     <string name="notif_disconnected">Android Auto disconnected</string>
     <string name="notif_stop">Stop</string>
@@ -91,7 +92,7 @@
     <!-- About Dialog -->
     <string name="about">About &amp; Support</string>
     <string name="about_description">Lightweight trigger for Headunit Revived</string>
-    <string name="about_dialog_body">Wireless Helper is a trigger app for Headunit Revived.\n\nDeveloped by André Rinas\n© 2026</string>
+    <string name="about_dialog_body">Wireless Helper is a trigger app for Headunit Revived.\n\nDeveloped by AndrÃ© Rinas\nÂ© 2026</string>
 
     <!-- Info Section -->
     <string name="category_info">INFO</string>

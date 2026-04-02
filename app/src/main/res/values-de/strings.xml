@@ -11,6 +11,8 @@
     <string name="mode_hotspot_phone">Handy-Hotspot</string>
     <string name="mode_passive">Tablet-Hotspot</string>
     <string name="mode_wifi_direct">Wi-Fi Direct</string>
+    <string name="mode_tablet_hotspot_gateway">Tablet-Hotspot-Gateway</string>
+
 
     <!-- Auto Start -->
     <string name="auto_start_label">Dienst automatisch starten</string>

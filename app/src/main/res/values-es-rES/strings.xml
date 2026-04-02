@@ -8,6 +8,8 @@
     <string name="mode_hotspot_phone">Punto de acceso</string>
     <string name="mode_passive">Punto de acceso tablet</string>
     <string name="mode_wifi_direct">Wi-Fi Directo</string>
+    <string name="mode_tablet_hotspot_gateway">Puerta de enlace hotspot tablet</string>
+
     
     <string name="auto_start_label">Inicio automático del servicio</string>
     <string name="auto_start_no">No (Manual)</string>
